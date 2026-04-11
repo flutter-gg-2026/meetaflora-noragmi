@@ -18,8 +18,6 @@
 #### Second Visit - Rose
 ![Plant Details 2](assets/screenshots/details2.png)
 
-> ✨ Same plant, different AI-generated content — proving the "Fresh Data" requirement!
-
 ---
 
 ## ✨ Features
