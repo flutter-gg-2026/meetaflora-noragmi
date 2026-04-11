@@ -1,0 +1,36 @@
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
+@lazySingleton
+class DioClient {
+  late final Dio _dio;
+
+  DioClient() {
+    _dio = Dio(
+      BaseOptions(
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      ),
+    );
+
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          return handler.next(response);
+        },
+        onError: (error, handler) {
+          return handler.next(error);
+        },
+      ),
+    );
+  }
+
+  Dio get dio => _dio;
+}
